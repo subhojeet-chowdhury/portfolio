@@ -3,33 +3,33 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mic, Zap, Shield, Sparkles } from "lucide-react";
+import { Globe, Zap, Shield, Wand2 } from "lucide-react";
 
 export function Architecture() {
   const cards = [
     {
-      title: "1. Audio Capture (Rust)",
-      icon: Mic,
-      description: "A lightweight Rust daemon binds to your OS globally. Holding ALT+SPACE captures your voice into a raw audio buffer with zero latency.",
-      tags: ["Native API", "CoreAudio / PulseAudio"]
+      title: "Any App, Anywhere.",
+      icon: Globe,
+      description: "No extensions to install. No API keys to paste into every app you use. A lightweight daemon binds to your OS natively. Just hold ALT+SPACE anywhere, and start speaking.",
+      tags: ["Native OS API", "Rust Daemon"]
     },
     {
-      title: "2. Local Transcription",
+      title: "100% Private.",
       icon: Shield,
-      description: "Whisper.cpp processes the audio 100% locally on your machine. Your raw voice never touches the cloud, preserving absolute privacy.",
-      tags: ["Whisper.cpp", "ggml-base.en"]
+      description: "Your voice shouldn't be training someone else's model. We use an embedded inference engine to process your raw audio strictly on your local device.",
+      tags: ["On-device", "Whisper.cpp"]
     },
     {
-      title: "3. Contextual Formatting",
-      icon: Sparkles,
-      description: "A FastAPI backend takes the raw text, detects your active application, and routes it through a fast LLM (Groq or Gemini) to perfect the punctuation and tone.",
-      tags: ["FastAPI", "Groq Llama 3", "Gemini Flash"]
+      title: "Context Chameleon.",
+      icon: Wand2,
+      description: "It doesn't just transcribe; it adapts. By detecting your active window, our backend routes your text to an LLM to perfectly match the tone—formal for Outlook, casual for Slack, syntactic for VS Code.",
+      tags: ["Groq Llama 3", "Gemini Flash"]
     },
     {
-      title: "4. Native Injection",
+      title: "Instantly There.",
       icon: Zap,
-      description: "The formatted text is instantly injected back into your active window, streaming keystrokes natively via OS APIs in under 700ms total latency.",
-      tags: ["Rust enigo", "Simulated Keystrokes"]
+      description: "Once the context is refined, the text doesn't just copy to your clipboard. It natively injects and streams into your active text field in under 700ms total latency.",
+      tags: ["<700ms", "Keystroke Injection"]
     }
   ];
 
@@ -44,10 +44,10 @@ export function Architecture() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="font-display text-4xl sm:text-5xl tracking-tight text-ghost mb-6">
-              How it works under the hood.
+              Dictation that finally feels like magic.
             </h2>
             <p className="font-mono text-static max-w-2xl mx-auto">
-              A decoupled architecture prioritizing privacy and speed. Written in Rust for native OS interaction, C++ for local inference, and Python for AI routing.
+              We engineered out the friction. A decoupled architecture prioritizing absolute privacy and impossible speed.
             </p>
           </motion.div>
         </div>

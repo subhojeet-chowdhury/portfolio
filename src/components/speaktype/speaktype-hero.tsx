@@ -22,7 +22,7 @@ export function SpeaktypeHero() {
   const [subtitleDone, setSubtitleDone] = useState(false);
 
   return (
-    <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-void px-6">
+    <section className="relative flex min-h-[85vh] w-full flex-col items-center justify-center overflow-hidden bg-void px-6">
       {/* Voice orb sits ambient and center-low, behind the type — it should
           read as atmosphere the words are floating in front of, not a
           separate decorative panel. */}

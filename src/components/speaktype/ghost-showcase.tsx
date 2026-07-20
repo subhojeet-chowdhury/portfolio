@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useTime } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { Bot, FileText, MessageSquare, Terminal } from "lucide-react";
+import { Bot, FileText, MessageSquare, Terminal, Edit3 } from "lucide-react";
 
 // Mock environments for the cycle
 const environments = [
@@ -26,6 +26,13 @@ const environments = [
     headerColor: "bg-[#0078d4]",
     rawText: "yeah sounds good let's meet tomorrow at 10",
     formattedText: "That sounds good to me. Let's plan to meet tomorrow at 10:00 AM.",
+  },
+  {
+    name: "Apple Notes",
+    icon: Edit3,
+    headerColor: "bg-[#f5e6a8]/20", // Subtle yellow tint for dark mode notes
+    rawText: "we need to overhaul the ui next sprint maybe focus on animations",
+    formattedText: "Sprint Planning Notes:\n- Major UI overhaul required.\n- Primary focus: Implementing versatile animations.",
   }
 ];
 
@@ -40,10 +47,30 @@ export function GhostShowcase() {
   });
 
   // Tilted 3D perspective to flat forward-facing
-  const rotateX = useTransform(scrollYProgress, [0, 1], [15, 0]);
-  const rotateY = useTransform(scrollYProgress, [0, 1], [-15, 0]);
+  const rotateXScroll = useTransform(scrollYProgress, [0, 1], [15, 0]);
+  const rotateYScroll = useTransform(scrollYProgress, [0, 1], [-15, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
   const y = useTransform(scrollYProgress, [0, 1], [50, 0]);
+
+  // Ambient floating animation
+  const time = useTime();
+  const rotateXFloat = useTransform(time, (t) => Math.sin(t / 2000) * 1.5);
+  const rotateYFloat = useTransform(time, (t) => Math.cos(t / 2000) * 1.5);
+  const yFloat = useTransform(time, (t) => Math.sin(t / 1500) * 5);
+
+  // Combine scroll and float transforms
+  const rotateX = useTransform<number, number>(
+    [rotateXScroll, rotateXFloat],
+    ([scroll, float]) => scroll + float
+  );
+  const rotateY = useTransform<number, number>(
+    [rotateYScroll, rotateYFloat],
+    ([scroll, float]) => scroll + float
+  );
+  const combinedY = useTransform<number, number>(
+    [y, yFloat],
+    ([scrollY, floatY]) => scrollY + floatY
+  );
 
   // Magic state machine for the sequence
   const [phase, setPhase] = useState<"idle" | "listening" | "processing" | "typing">("idle");
@@ -83,9 +110,9 @@ export function GhostShowcase() {
   const EnvIcon = env.icon;
 
   return (
-    <section ref={containerRef} className="relative min-h-[150vh] bg-void py-32 overflow-hidden flex flex-col items-center">
+    <section ref={containerRef} className="relative min-h-[120vh] bg-void pt-10 pb-32 overflow-hidden flex flex-col items-center">
       
-      <div className="sticky top-1/4 w-full max-w-5xl px-6 flex flex-col items-center">
+      <div className="sticky top-[15vh] w-full max-w-5xl px-6 flex flex-col items-center">
         
         {/* Title */}
         <div className="text-center mb-16 relative z-20">
@@ -103,7 +130,7 @@ export function GhostShowcase() {
             rotateX,
             rotateY,
             scale,
-            y,
+            y: combinedY,
             transformPerspective: 1200,
           }}
           className="relative w-full max-w-3xl aspect-[16/10] mx-auto rounded-xl border border-hairline bg-panel shadow-2xl overflow-hidden glassmorphism"
