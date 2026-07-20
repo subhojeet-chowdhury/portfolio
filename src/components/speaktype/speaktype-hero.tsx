@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import { Button } from "@/components/ui/button";
 import { GhostType } from "./ghost-type";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 
@@ -106,10 +107,21 @@ export function SpeaktypeHero() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: subtitleDone || reducedMotion ? 1 : 0, y: subtitleDone || reducedMotion ? 0 : 8 }}
           transition={{ duration: 0.5 }}
-          className="mt-14 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-static"
+          className="mt-14 flex flex-col items-center gap-6"
         >
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-wave-cyan" />
-          Privacy-first · macOS &amp; Linux · &lt;700ms
+          <div className="flex gap-4">
+            <Button size="lg" className="rounded-full bg-ghost text-void hover:bg-white px-8 h-12 font-medium tracking-tight">
+              Download for macOS
+            </Button>
+            <Button size="lg" variant="outline" className="rounded-full border-hairline bg-transparent hover:bg-hairline hover:text-ghost px-8 h-12 font-medium tracking-tight text-ghost">
+              View on GitHub
+            </Button>
+          </div>
+          
+          <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-static">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-wave-cyan" />
+            Privacy-first · macOS &amp; Linux · &lt;700ms
+          </div>
         </motion.div>
       </div>
     </section>

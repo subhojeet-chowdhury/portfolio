@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { SpeaktypeHero } from "@/components/speaktype/speaktype-hero";
+import { GhostShowcase } from "@/components/speaktype/ghost-showcase";
+import { Architecture } from "@/components/speaktype/architecture";
 
 export const metadata: Metadata = {
   title: "SpeakType — Speak your mind. Watch it type.",
@@ -11,8 +13,8 @@ export default function SpeaktypePage() {
   return (
     <main className="bg-void">
       <SpeaktypeHero />
-      {/* Next sections (How it works / Architecture story / Try it) build
-          on this same page — hero ships first per the brief. */}
+      <GhostShowcase />
+      <Architecture />
     </main>
   );
 }
