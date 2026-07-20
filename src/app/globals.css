@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+:root {
+  /* SpeakType design tokens — see /portfolio design notes.
+     Void black base (not pure #000 — slight blue-cast for depth),
+     a violet->cyan gradient standing in for a voice waveform rather
+     than a flat single-accent brand color. */
+  --void: #08080c;
+  --panel: #0f0f16;
+  --ghost: #ededf2;
+  --static: #6e6e85;
+  --wave-violet: #7c5cff;
+  --wave-cyan: #3ed9c7;
+  --hairline: #1c1c26;
+
+  --background: var(--void);
+  --foreground: var(--ghost);
+}
+
+@theme inline {
+  --color-void: var(--void);
+  --color-panel: var(--panel);
+  --color-ghost: var(--ghost);
+  --color-static: var(--static);
+  --color-wave-violet: var(--wave-violet);
+  --color-wave-cyan: var(--wave-cyan);
+  --color-hairline: var(--hairline);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+/* Signature gradient text — used sparingly, per design plan. */
+.wave-gradient-text {
+  background: linear-gradient(115deg, var(--wave-violet) 10%, var(--wave-cyan) 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
