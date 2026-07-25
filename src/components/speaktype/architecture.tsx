@@ -4,10 +4,17 @@ import { motion, useScroll, useTransform, useMotionValue, useMotionTemplate } fr
 import { useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Globe, Zap, Shield, Wand2 } from "lucide-react";
+import { Globe, Zap, Shield, Wand2, type LucideIcon } from "lucide-react";
+
+type CardProps = {
+  title: string;
+  icon: LucideIcon;
+  description: string;
+  tags: string[];
+};
 
 // The premium "Spotlight" card component
-function SpotlightCard({ card, index }: { card: any, index: number }) {
+function SpotlightCard({ card, index }: { card: CardProps, index: number }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 

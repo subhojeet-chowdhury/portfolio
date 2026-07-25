@@ -29,7 +29,7 @@ function StatusOverlay({ phase, rawText, className = "bottom-[110%] left-4" }: {
                 ))}
               </div>
               <div className="font-mono text-xs opacity-70 italic max-w-[280px] truncate">
-                "{rawText}"
+                &quot;{rawText}&quot;
               </div>
             </div>
           )}
@@ -238,10 +238,10 @@ export function GhostShowcase() {
         {/* Title */}
         <div className="text-center mb-16 relative z-20">
           <h2 className="font-display text-4xl sm:text-5xl tracking-tight text-ghost mb-4">
-            "The Ghost Typist"
+            &quot;The Ghost Typist&quot;
           </h2>
           <p className="font-mono text-static text-sm max-w-xl mx-auto">
-            You don't have to change how you work; the AI adapts to where you are.
+            You don&apos;t have to change how you work; the AI adapts to where you are.
           </p>
         </div>
 
