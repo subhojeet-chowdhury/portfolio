@@ -104,25 +104,25 @@ export function Architecture() {
       title: "Any App, Anywhere.",
       icon: Globe,
       description: "No extensions to install. No API keys to paste into every app you use. A lightweight daemon binds to your OS natively. Just hold ALT+SPACE anywhere, and start speaking.",
-      tags: ["Native OS API", "Rust Daemon"]
+      tags: ["Global Hotkeys", "System-level Integration", "Rust Backend"]
     },
     {
       title: "100% Private.",
       icon: Shield,
       description: "Your voice shouldn't be training someone else's model. We use an embedded inference engine to process your raw audio strictly on your local device.",
-      tags: ["On-device", "Whisper.cpp"]
+      tags: ["Local Inference", "Zero Audio Uploads", "Whisper STT"]
     },
     {
       title: "Context Chameleon.",
       icon: Wand2,
       description: "It doesn't just transcribe; it adapts. By detecting your active window, our backend routes your text to an LLM to perfectly match the tone—formal for Outlook, casual for Slack, syntactic for VS Code.",
-      tags: ["Groq Llama 3", "Gemini Flash"]
+      tags: ["Active Window Detection", "AI Tone Matching", "FastAPI Service"]
     },
     {
       title: "Instantly There.",
       icon: Zap,
       description: "Once the context is refined, the text doesn't just copy to your clipboard. It natively injects and streams into your active text field in under 700ms total latency.",
-      tags: ["<700ms", "Keystroke Injection"]
+      tags: ["Sub-second Latency", "Keystroke Streaming", "Auto-Formatting"]
     }
   ];
 

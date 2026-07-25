@@ -110,17 +110,21 @@ export function SpeaktypeHero() {
           className="mt-14 flex flex-col items-center gap-6"
         >
           <div className="flex gap-4">
-            <Button size="lg" className="rounded-full bg-ghost text-void hover:bg-white px-8 h-12 font-medium tracking-tight">
-              Download for macOS
+            <Button asChild size="lg" className="rounded-full bg-ghost text-void hover:bg-white px-8 h-12 font-medium tracking-tight">
+              <a href="https://github.com/subhojeet-chowdhury/SpeakType/releases" target="_blank" rel="noopener noreferrer">
+                Download for Win/Mac
+              </a>
             </Button>
-            <Button size="lg" variant="outline" className="rounded-full border-hairline bg-transparent hover:bg-hairline hover:text-ghost px-8 h-12 font-medium tracking-tight text-ghost">
-              View on GitHub
+            <Button asChild size="lg" variant="outline" className="rounded-full border-hairline bg-transparent hover:bg-hairline hover:text-ghost px-8 h-12 font-medium tracking-tight text-ghost">
+              <a href="https://github.com/subhojeet-chowdhury/SpeakType" target="_blank" rel="noopener noreferrer">
+                View on GitHub
+              </a>
             </Button>
           </div>
           
           <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-static">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-wave-cyan" />
-            Privacy-first · macOS &amp; Linux · &lt;700ms
+            Privacy-first · Win, Mac, Linux · &lt;700ms
           </div>
         </motion.div>
       </div>

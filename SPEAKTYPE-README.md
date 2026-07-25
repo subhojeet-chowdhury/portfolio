@@ -1,6 +1,8 @@
+
+
 <div align="center">
   <h1>🎙️ SpeakType</h1>
-  <p><strong>A lightning-fast, privacy-first, cross-application dictation tool for macOS & Linux.</strong></p>
+  <p><strong>A lightning-fast, privacy-first, cross-application dictation tool for Windows, macOS, & Linux.</strong></p>
   
   [![Rust](https://img.shields.io/badge/Rust-Daemon-orange.svg)](https://rust-lang.org)
   [![FastAPI](https://img.shields.io/badge/FastAPI-Service-009688.svg)](https://fastapi.tiangolo.com)
@@ -17,7 +19,7 @@
 ---
 
 <div align="center">
-  <img src="https://via.placeholder.com/800x450.png?text=[Insert+Demo+Video/GIF+Here]" alt="SpeakType Demo Video">
+  <img width="640" height="480" alt="speakType-in-action" src="https://github.com/user-attachments/assets/b358699a-82c8-49df-a15a-bfbee4cb0ec1" />
   <p><em>Hold a hotkey anywhere on your desktop, speak, and release. Watch the transcript magically type itself out.</em></p>
 </div>
 
@@ -68,44 +70,25 @@ For the absolute best balance of speed, privacy, and accuracy, we recommend:
 
 *Why?* The local STT avoids network upload overhead for the heavy audio file (transcribing locally in <200ms), while the Groq LLM easily handles the text cleanup in <500ms.
 
-## 🚀 Quick Start
+## 🚀 Quick Start (For Developers)
 
-SpeakType is split into two lightweight, decoupled services.
-
-### 1. Build and Run the Whisper Server
-First, build the local inference engine and start the background HTTP server. By default, this downloads the `base.en` model (~140MB). You can swap it for the `small.en` model (~460MB) in `setup_whisper.sh` if you prefer higher accuracy and don't mind slightly longer latency.
+SpeakType is split into two lightweight services (Whisper STT and Python FastAPI) managed by a Rust daemon. We've included a unified startup script that automatically builds, configures, and boots everything for you.
 
 ```bash
-./scripts/setup_whisper.sh
+# 1. Configure your API Keys (Optional if using local STT/LLM)
+cp core/config.toml.example core/config.toml
+cp cleanup_service/.env.example cleanup_service/.env
+# Edit them to add your Groq/Gemini API keys if desired.
 
-# Leave this running in a background terminal!
-./whisper.cpp/build/bin/whisper-server -m ./whisper.cpp/models/ggml-base.en.bin -l en
+# 2. Boot the entire stack
+./start.sh
 ```
 
-### 2. Start the AI Cleanup Service
-This runs the lightweight Python FastAPI server that handles formatting and context-routing.
-```bash
-cd cleanup_service
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-
-# Configure your LLM Provider (Gemini or local Ollama)
-cp .env.example .env
-# Edit .env and add your GEMINI_API_KEY, or set LLM_PROVIDER=ollama
-
-# Run the server
-uvicorn main:app --host 127.0.0.1 --port 8008
-```
-
-### 3. Run the Rust Daemon
-The core daemon handles global hotkeys, audio capture, and keystroke injection.
-```bash
-cd core
-cp config.toml.example config.toml # Modify hotkey here if needed
-cargo build --release
-./target/release/speaktype
-```
+**That's it!** The script will:
+- Check for and build the local `whisper-server` if missing.
+- Set up the Python virtual environment and install dependencies.
+- Compile and start the Rust daemon in the foreground.
+- Safely kill all background services when you press `CTRL+C`.
 
 ## 🎯 Usage
 Once both services are running:
@@ -114,8 +97,8 @@ Once both services are running:
 3. Speak normally
 4. Release the keys. Your text will instantly stream into the field perfectly formatted!
 
-### 4. Logs and Troubleshooting
-The Rust daemon writes daily rolling logs to `core/logs/speaktype.log.*`. If the daemon fails to start or a hotkey press is ignored, check these logs for detailed error messages.
+### 3. Logs and Troubleshooting
+The Rust daemon writes daily rolling logs to `logs/speaktype.log.*`. If the daemon fails to start or a hotkey press is ignored, check these logs for detailed error messages. Background services log to `logs/whisper.log` and `logs/cleanup.log`.
 
 ---
 *Built with Rust, Python, and a lot of caffeine.*
