@@ -4,11 +4,12 @@ import { motion, useScroll, useTransform, useMotionValue, useMotionTemplate } fr
 import { useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Globe, Zap, Shield, Wand2, type LucideIcon } from "lucide-react";
+import * as Icons from "lucide-react";
+import portfolioData from "@/data/portfolio.json";
 
 type CardProps = {
   title: string;
-  icon: LucideIcon;
+  iconName: string;
   description: string;
   tags: string[];
 };
@@ -26,6 +27,10 @@ function SpotlightCard({ card, index }: { card: CardProps, index: number }) {
 
   // Alternate entry direction based on index (even = left, odd = right)
   const xOffset = index % 2 === 0 ? -50 : 50;
+  
+  // Dynamically resolve icon from name
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const Icon = (Icons as any)[card.iconName];
 
   return (
     <motion.div
@@ -76,7 +81,7 @@ function SpotlightCard({ card, index }: { card: CardProps, index: number }) {
         />
 
         <CardContent className="p-8 flex-1 flex flex-col relative z-10">
-          <card.icon className="w-8 h-8 text-wave-cyan mb-6 group-hover:scale-110 transition-transform duration-500" />
+          {Icon && <Icon className="w-8 h-8 text-wave-cyan mb-6 group-hover:scale-110 transition-transform duration-500" />}
           <h3 className="text-xl font-medium text-ghost mb-3">{card.title}</h3>
           <p className="text-static mb-8 flex-1 leading-relaxed">
             {card.description}
@@ -106,32 +111,8 @@ export function Architecture() {
   const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
   const y = useTransform(scrollYProgress, [0, 1], [80, 0]);
 
-  const cards = [
-    {
-      title: "Any App, Anywhere.",
-      icon: Globe,
-      description: "No extensions to install. No API keys to paste into every app you use. A lightweight daemon binds to your OS natively. Just hold ALT+SPACE anywhere, and start speaking.",
-      tags: ["Global Hotkeys", "System-level Integration", "Rust Backend"]
-    },
-    {
-      title: "100% Private.",
-      icon: Shield,
-      description: "Your voice shouldn't be training someone else's model. We use an embedded inference engine to process your raw audio strictly on your local device.",
-      tags: ["Local Inference", "Zero Audio Uploads", "Whisper STT"]
-    },
-    {
-      title: "Context Chameleon.",
-      icon: Wand2,
-      description: "It doesn't just transcribe; it adapts. By detecting your active window, our backend routes your text to an LLM to perfectly match the tone—formal for Outlook, casual for Slack, syntactic for VS Code.",
-      tags: ["Active Window Detection", "AI Tone Matching", "FastAPI Service"]
-    },
-    {
-      title: "Instantly There.",
-      icon: Zap,
-      description: "Once the context is refined, the text doesn't just copy to your clipboard. It natively injects and streams into your active text field in under 700ms total latency.",
-      tags: ["Sub-second Latency", "Keystroke Streaming", "Auto-Formatting"]
-    }
-  ];
+  const project = portfolioData.projects.find((p) => p.id === "speaktype");
+  const cards = project?.showcaseData?.architectureCards || [];
 
   return (
     <section ref={containerRef} className="bg-panel py-32 px-6 overflow-hidden relative">

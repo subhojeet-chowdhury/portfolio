@@ -2,7 +2,8 @@
 
 import { motion, useScroll, useTransform, useTime, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { MessageSquare, Mail, MessageCircle, Bot } from "lucide-react";
+import * as Icons from "lucide-react";
+import portfolioData from "@/data/portfolio.json";
 
 // The sleek, native-feeling overlay that appears inside the apps during listening/processing
 function StatusOverlay({ phase, rawText, className = "bottom-[110%] left-4" }: { phase: string, rawText: string, className?: string }) {
@@ -39,21 +40,20 @@ function StatusOverlay({ phase, rawText, className = "bottom-[110%] left-4" }: {
   );
 }
 
-// Mock environments for the cycle
-const environments = [
-  {
-    name: "Slack",
-    icon: MessageSquare,
-    headerColor: "bg-[#350d36]",
-    bgClass: "bg-[#1a1d21]",
-    textColor: "text-white/50",
-    rawText: "hey uhh team so im stuck in traffic on the 405 it's a nightmare. ill probably be like 15 maybe 20 minutes late to the standup. just go ahead and start without me.",
-    formattedText: "Hey team, I'm stuck in traffic and will be 15-20 minutes late to standup. Please start without me and I'll jump in as soon as I arrive!",
-    renderUI: (text: string, phase: string, rawText: string) => (
+// Pull data from JSON
+const project = portfolioData.projects.find((p) => p.id === "speaktype");
+const rawEnvs = project?.showcaseData?.environments || [];
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const environments = rawEnvs.map((env: any) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const Icon = (Icons as any)[env.iconName] || Icons.Terminal;
+  let renderUI;
+
+  if (env.name === "Slack") {
+    renderUI = (text: string, phase: string, rawText: string) => (
       <div className="flex flex-col h-full font-sans">
-        <div className="flex-1 p-6 flex flex-col justify-end">
-          {/* Chat history is empty, simulating a new message */}
-        </div>
+        <div className="flex-1 p-6 flex flex-col justify-end"></div>
         <div className="min-h-[5rem] border-t border-white/10 p-3 relative">
            <StatusOverlay phase={phase} rawText={rawText} />
            <div className="w-full h-full min-h-[3.5rem] border border-white/20 rounded-lg bg-[#222529] text-gray-200 text-sm px-4 py-3 shadow-inner">
@@ -68,21 +68,11 @@ const environments = [
            </div>
         </div>
       </div>
-    )
-  },
-  {
-    name: "Claude",
-    icon: Bot,
-    headerColor: "bg-[#252423]",
-    bgClass: "bg-[#2c2b2a]",
-    textColor: "text-white/50",
-    rawText: "yeah so i need a python script that basically looks at a folder full of csv files and combines them all into one big pandas dataframe but also adds a column for the original filename.",
-    formattedText: "Can you write a Python script that iterates through a directory of CSV files, merges them into a single Pandas DataFrame, and adds a new column containing the source filename for each row?",
-    renderUI: (text: string, phase: string, rawText: string) => (
+    );
+  } else if (env.name === "Claude") {
+    renderUI = (text: string, phase: string, rawText: string) => (
       <div className="flex flex-col h-full px-8 py-6 relative">
-        <div className="flex-1 flex flex-col justify-end gap-6 pb-20">
-          {/* Chat history empty */}
-        </div>
+        <div className="flex-1 flex flex-col justify-end gap-6 pb-20"></div>
         <div className="absolute bottom-6 left-8 right-8">
            <StatusOverlay phase={phase} rawText={rawText} />
            <div className="w-full min-h-[4rem] border border-white/10 rounded-xl bg-[#3a3938] px-5 py-4 text-gray-200 text-sm font-sans relative shadow-inner">
@@ -97,17 +87,9 @@ const environments = [
            </div>
         </div>
       </div>
-    )
-  },
-  {
-    name: "Mail",
-    icon: Mail,
-    headerColor: "bg-[#f5f5f5]",
-    bgClass: "bg-white",
-    textColor: "text-gray-500",
-    rawText: "hi sarah just looked at the latest figma file. the new hero section looks awesome but i think the blue is a little too dark. can we try lightening it up a bit? let me know what you think.",
-    formattedText: "Hi Sarah,\n\nI reviewed the latest Figma file. The new hero section looks fantastic! However, I feel the blue might be a bit too dark. Could we try lightening it up slightly?\n\nLet me know your thoughts.",
-    renderUI: (text: string, phase: string, rawText: string) => (
+    );
+  } else if (env.name === "Mail") {
+    renderUI = (text: string, phase: string, rawText: string) => (
       <div className="flex flex-col h-full font-sans relative">
         <div className="border-b border-gray-200 px-6 py-3 flex flex-col gap-2 text-sm">
           <div className="flex text-gray-500"><span className="w-12">To:</span> <span className="text-gray-900">sarah@design.co</span></div>
@@ -125,21 +107,12 @@ const environments = [
           )}
         </div>
       </div>
-    )
-  },
-  {
-    name: "WhatsApp",
-    icon: MessageCircle,
-    headerColor: "bg-[#075e54]",
-    bgClass: "bg-[#e5ddd5]",
-    textColor: "text-white/70",
-    rawText: "dude are we still on for dinner tonight? im starving. let me know if we're doing tacos or pizza so i know what to expect.",
-    formattedText: "Are we still on for dinner tonight? I'm starving! Let me know if we're doing tacos or pizza so I know what to expect.",
-    renderUI: (text: string, phase: string, rawText: string) => (
+    );
+  } else {
+    // WhatsApp default
+    renderUI = (text: string, phase: string, rawText: string) => (
       <div className="flex flex-col h-full relative" style={{ backgroundImage: 'radial-gradient(#00000015 1px, transparent 0)', backgroundSize: '15px 15px' }}>
-        <div className="flex-1 p-6 flex flex-col justify-end">
-           {/* Chat history empty */}
-        </div>
+        <div className="flex-1 p-6 flex flex-col justify-end"></div>
         <div className="min-h-[4rem] bg-[#f0f0f0] flex items-center px-4 py-2 relative">
            <StatusOverlay phase={phase} rawText={rawText} />
            <div className="flex-1 min-h-[2.5rem] rounded-2xl bg-white border border-gray-200 text-gray-900 text-sm flex items-center px-4 py-2 shadow-sm">
@@ -154,9 +127,11 @@ const environments = [
            </div>
         </div>
       </div>
-    )
+    );
   }
-];
+
+  return { ...env, icon: Icon, renderUI };
+});
 
 export function GhostShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);

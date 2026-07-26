@@ -1,0 +1,141 @@
+{
+  "personal": {
+    "name": "Subhojeet Chowdhury",
+    "role": "Software Engineer",
+    "location": "Kolkata, India",
+    "email": "subhojeetchowdhury98@gmail.com",
+    "summary": "Software engineer with 2+ years of experience specialising in agentic AI systems, cloud-native AWS architectures, and full-stack enterprise applications. Career arc spans full-stack HR applications to autonomous AWS-native WFA systems.",
+    "socials": {
+      "github": "https://github.com/subhojeet-chowdhury",
+      "linkedin": "https://www.linkedin.com/in/subhojeet-chowdhury/",
+      "leetcode": "https://leetcode.com/u/subhojeet-chowdhury/"
+    }
+  },
+  "skills": [
+    {
+      "category": "AI / Agents",
+      "items": ["Agentic AI", "Multi-Agent Systems", "LangGraph", "LangChain", "RAG", "Prompt Eng.", "HITL Design", "LLMs", "Guardrails", "Azure OpenAI"]
+    },
+    {
+      "category": "Cloud & Infrastructure",
+      "items": ["AWS Bedrock", "Lambda", "SQS", "DynamoDB", "S3", "EC2", "IAM", "GCP Dialogflow CX", "Docker", "Kubernetes", "CI/CD"]
+    },
+    {
+      "category": "Languages & Frameworks",
+      "items": ["Python", "C++", "TypeScript", "JavaScript", "SQL", "Angular", "FastAPI", "Flask"]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Software Engineer",
+      "company": "Tata Consultancy Services (TCS)",
+      "location": "Kolkata, India",
+      "period": "Jul 2024 – Present",
+      "highlights": [
+        "Autonomous WFA System: Designing an end-to-end autonomous Workforce Administration system on AWS involving Email ingestion, PII masking, Bedrock classification, human review, and Oracle HRM updates.",
+        "Agentic AI: Led migration of rule-based HR apps to multi-agent orchestrated workflows using LangGraph and LangChain, significantly cutting help-desk load.",
+        "Full-Stack & ITSM: Built end-to-end HR operations suite (Angular + Python/Flask) and extended FreshService for a ~300,000-user blue-collar workforce."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Tech — Computer Science & Engineering",
+      "institution": "Heritage Institute of Technology, Kolkata (MAKAUT)",
+      "period": "2020 – 2024",
+      "details": "CGPA: 8.71 / 10"
+    }
+  ],
+  "projects": [
+    {
+      "id": "speaktype",
+      "title": "SpeakType",
+      "tagline": "A lightning-fast, privacy-first, cross-application dictation tool.",
+      "tech": ["Rust", "Python", "Whisper.cpp", "FastAPI", "Llama 3"],
+      "github": "https://github.com/subhojeet-chowdhury/SpeakType",
+      "featured": true,
+      "showcaseData": {
+        "architectureCards": [
+          {
+            "title": "Any App, Anywhere.",
+            "iconName": "Globe",
+            "description": "No extensions to install. No API keys to paste into every app you use. A lightweight daemon binds to your OS natively. Just hold ALT+SPACE anywhere, and start speaking.",
+            "tags": ["Global Hotkeys", "System-level Integration", "Rust Backend"]
+          },
+          {
+            "title": "100% Private.",
+            "iconName": "Shield",
+            "description": "Your voice shouldn't be training someone else's model. We use an embedded inference engine to process your raw audio strictly on your local device.",
+            "tags": ["Local Inference", "Zero Audio Uploads", "Whisper STT"]
+          },
+          {
+            "title": "Context Chameleon.",
+            "iconName": "Wand2",
+            "description": "It doesn't just transcribe; it adapts. By detecting your active window, our backend routes your text to an LLM to perfectly match the tone—formal for Outlook, casual for Slack, syntactic for VS Code.",
+            "tags": ["Active Window Detection", "AI Tone Matching", "FastAPI Service"]
+          },
+          {
+            "title": "Instantly There.",
+            "iconName": "Zap",
+            "description": "Once the context is refined, the text doesn't just copy to your clipboard. It natively injects and streams into your active text field in under 700ms total latency.",
+            "tags": ["Sub-second Latency", "Keystroke Streaming", "Auto-Formatting"]
+          }
+        ],
+        "environments": [
+          {
+            "name": "Slack",
+            "iconName": "MessageSquare",
+            "headerColor": "bg-[#350d36]",
+            "bgClass": "bg-[#1a1d21]",
+            "textColor": "text-white/50",
+            "rawText": "hey uhh team so im stuck in traffic on the 405 it's a nightmare. ill probably be like 15 maybe 20 minutes late to the standup. just go ahead and start without me.",
+            "formattedText": "Hey team, I'm stuck in traffic and will be 15-20 minutes late to standup. Please start without me and I'll jump in as soon as I arrive!"
+          },
+          {
+            "name": "Claude",
+            "iconName": "Bot",
+            "headerColor": "bg-[#252423]",
+            "bgClass": "bg-[#2c2b2a]",
+            "textColor": "text-white/50",
+            "rawText": "yeah so i need a python script that basically looks at a folder full of csv files and combines them all into one big pandas dataframe but also adds a column for the original filename.",
+            "formattedText": "Can you write a Python script that iterates through a directory of CSV files, merges them into a single Pandas DataFrame, and adds a new column containing the source filename for each row?"
+          },
+          {
+            "name": "Mail",
+            "iconName": "Mail",
+            "headerColor": "bg-[#f5f5f5]",
+            "bgClass": "bg-white",
+            "textColor": "text-gray-500",
+            "rawText": "hi sarah just looked at the latest figma file. the new hero section looks awesome but i think the blue is a little too dark. can we try lightening it up a bit? let me know what you think.",
+            "formattedText": "Hi Sarah,\n\nI reviewed the latest Figma file. The new hero section looks fantastic! However, I feel the blue might be a bit too dark. Could we try lightening it up slightly?\n\nLet me know your thoughts."
+          },
+          {
+            "name": "WhatsApp",
+            "iconName": "MessageCircle",
+            "headerColor": "bg-[#075e54]",
+            "bgClass": "bg-[#e5ddd5]",
+            "textColor": "text-white/70",
+            "rawText": "dude are we still on for dinner tonight? im starving. let me know if we're doing tacos or pizza so i know what to expect.",
+            "formattedText": "Are we still on for dinner tonight? I'm starving! Let me know if we're doing tacos or pizza so I know what to expect."
+          }
+        ]
+      }
+    },
+    {
+      "id": "hr-workmate",
+      "title": "HR Workmate",
+      "tagline": "Agentic HR Chatbot for enterprise conversational querying and retrieval.",
+      "tech": ["LangGraph", "LangChain", "RAG", "Azure OpenAI"],
+      "github": "",
+      "featured": true
+    },
+    {
+      "id": "prism",
+      "title": "Prism",
+      "tagline": "Autonomous WFA Email-to-HRM Pipeline.",
+      "tech": ["AWS Bedrock", "Presidio", "Lambda", "SQS"],
+      "github": "",
+      "featured": true
+    }
+  ]
+}
