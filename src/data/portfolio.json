@@ -13,16 +13,62 @@
   },
   "skills": [
     {
-      "category": "AI / Agents",
-      "items": ["Agentic AI", "Multi-Agent Systems", "LangGraph", "LangChain", "RAG", "Prompt Eng.", "HITL Design", "LLMs", "Guardrails", "Azure OpenAI"]
+      "category": "AI & Agents",
+      "items": [
+        "Agentic AI",
+        "Multi-Agent Systems",
+        "LangGraph",
+        "LangChain",
+        "RAG",
+        "Prompt Eng.",
+        "HITL Design",
+        "LLMs",
+        "Azure OpenAI"
+      ]
     },
     {
-      "category": "Cloud & Infrastructure",
-      "items": ["AWS Bedrock", "Lambda", "SQS", "DynamoDB", "S3", "EC2", "IAM", "GCP Dialogflow CX", "Docker", "Kubernetes", "CI/CD"]
+      "category": "Cloud, Infra & Tools",
+      "items": [
+        "AWS",
+        "GCP",
+        "Lambda",
+        "DynamoDB",
+        "S3",
+        "EC2",
+        "Docker",
+        "Kubernetes",
+        "CI/CD",
+        "Git"
+      ]
     },
     {
       "category": "Languages & Frameworks",
-      "items": ["Python", "C++", "TypeScript", "JavaScript", "SQL", "Angular", "FastAPI", "Flask"]
+      "items": [
+        "Python",
+        "TypeScript",
+        "JavaScript",
+        "C++",
+        "SQL",
+        "React",
+        "Angular",
+        "FastAPI",
+        "Flask",
+        "REST APIs"
+      ]
+    },
+    {
+      "category": "Core Eng. & Interests",
+      "items": [
+        "System Design",
+        "DSA",
+        "DBMS",
+        "OOP",
+        "Classical ML",
+        "Deep Learning",
+        "Linear Algebra",
+        "Statistics",
+        "STT/TTS Models"
+      ]
     }
   ],
   "experience": [
@@ -31,10 +77,28 @@
       "company": "Tata Consultancy Services (TCS)",
       "location": "Kolkata, India",
       "period": "Jul 2024 – Present",
-      "highlights": [
-        "Autonomous WFA System: Designing an end-to-end autonomous Workforce Administration system on AWS involving Email ingestion, PII masking, Bedrock classification, human review, and Oracle HRM updates.",
-        "Agentic AI: Led migration of rule-based HR apps to multi-agent orchestrated workflows using LangGraph and LangChain, significantly cutting help-desk load.",
-        "Full-Stack & ITSM: Built end-to-end HR operations suite (Angular + Python/Flask) and extended FreshService for a ~300,000-user blue-collar workforce."
+      "phases": [
+        {
+          "title": "Autonomous WFA System (Phase 4 — Current, AWS)",
+          "bullets": [
+            "Designing an end-to-end autonomous Workforce Administration (WFA) system on AWS: Email ingestion → PII masking → Bedrock classification (Nova Pro) → human review → Oracle HRM updates via SQS, Lambda, S3 and DynamoDB.",
+            "Built document decomposition layer to split multi-request emails into parallel sub-workflows; designed HITL checkpoints for data incompleteness, compliance failures, and approval gates before committing any HRM changes."
+          ]
+        },
+        {
+          "title": "Agentic AI (Phase 3)",
+          "bullets": [
+            "Led migration of rule-based HR apps to multi-agent orchestrated workflows using LangGraph and LangChain; built AI chatbot handling employee queries on leave, payroll, and HR policies — cutting help-desk load significantly.",
+            "Deployed RAG pipelines over large HR knowledge bases for grounded, policy-aware responses; built an AI interview-scheduling agent automating slot matching and candidate communication."
+          ]
+        },
+        {
+          "title": "Full-Stack & ITSM (Phases 1–2)",
+          "bullets": [
+            "Built end-to-end HR operations suite (Angular/React + Python/Flask) covering recruitment, onboarding, payroll, and offboarding; integrated with ServiceNow for structured ticket routing.",
+            "Configured and extended FreshService for a ~300,000-user blue-collar workforce (Applied Universal), automating ticket classification, routing, and resolution tracking across HR and IT."
+          ]
+        }
       ]
     }
   ],
@@ -51,7 +115,13 @@
       "id": "speaktype",
       "title": "SpeakType",
       "tagline": "A lightning-fast, privacy-first, cross-application dictation tool.",
-      "tech": ["Rust", "Python", "Whisper.cpp", "FastAPI", "Llama 3"],
+      "tech": [
+        "Rust",
+        "Python",
+        "Whisper.cpp",
+        "FastAPI",
+        "Llama 3"
+      ],
       "github": "https://github.com/subhojeet-chowdhury/SpeakType",
       "featured": true,
       "showcaseData": {
@@ -60,25 +130,41 @@
             "title": "Any App, Anywhere.",
             "iconName": "Globe",
             "description": "No extensions to install. No API keys to paste into every app you use. A lightweight daemon binds to your OS natively. Just hold ALT+SPACE anywhere, and start speaking.",
-            "tags": ["Global Hotkeys", "System-level Integration", "Rust Backend"]
+            "tags": [
+              "Global Hotkeys",
+              "System-level Integration",
+              "Rust Backend"
+            ]
           },
           {
             "title": "100% Private.",
             "iconName": "Shield",
             "description": "Your voice shouldn't be training someone else's model. We use an embedded inference engine to process your raw audio strictly on your local device.",
-            "tags": ["Local Inference", "Zero Audio Uploads", "Whisper STT"]
+            "tags": [
+              "Local Inference",
+              "Zero Audio Uploads",
+              "Whisper STT"
+            ]
           },
           {
             "title": "Context Chameleon.",
             "iconName": "Wand2",
             "description": "It doesn't just transcribe; it adapts. By detecting your active window, our backend routes your text to an LLM to perfectly match the tone—formal for Outlook, casual for Slack, syntactic for VS Code.",
-            "tags": ["Active Window Detection", "AI Tone Matching", "FastAPI Service"]
+            "tags": [
+              "Active Window Detection",
+              "AI Tone Matching",
+              "FastAPI Service"
+            ]
           },
           {
             "title": "Instantly There.",
             "iconName": "Zap",
             "description": "Once the context is refined, the text doesn't just copy to your clipboard. It natively injects and streams into your active text field in under 700ms total latency.",
-            "tags": ["Sub-second Latency", "Keystroke Streaming", "Auto-Formatting"]
+            "tags": [
+              "Sub-second Latency",
+              "Keystroke Streaming",
+              "Auto-Formatting"
+            ]
           }
         ],
         "environments": [
@@ -125,7 +211,12 @@
       "id": "hr-workmate",
       "title": "HR Workmate",
       "tagline": "Agentic HR Chatbot for enterprise conversational querying and retrieval.",
-      "tech": ["LangGraph", "LangChain", "RAG", "Azure OpenAI"],
+      "tech": [
+        "LangGraph",
+        "LangChain",
+        "RAG",
+        "Azure OpenAI"
+      ],
       "github": "",
       "featured": true
     },
@@ -133,7 +224,12 @@
       "id": "prism",
       "title": "Prism",
       "tagline": "Autonomous WFA Email-to-HRM Pipeline.",
-      "tech": ["AWS Bedrock", "Presidio", "Lambda", "SQS"],
+      "tech": [
+        "AWS Bedrock",
+        "Presidio",
+        "Lambda",
+        "SQS"
+      ],
       "github": "",
       "featured": true
     }

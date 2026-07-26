@@ -36,16 +36,16 @@ export function Journey() {
 
         <div className="relative">
           {/* Background Track */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-white/5 md:-translate-x-1/2" />
+          <div className="absolute left-[16px] top-0 bottom-0 w-px bg-white/5" />
           
           {/* Scroll Drawn Line */}
           <motion.div 
-            className="absolute left-[15px] md:left-1/2 top-0 w-[3px] bg-wave-cyan md:-translate-x-1/2 shadow-[0_0_15px_rgba(0,240,255,0.8)] origin-top z-10 rounded-full"
+            className="absolute left-[15px] top-0 w-[3px] bg-wave-cyan shadow-[0_0_15px_rgba(0,240,255,0.8)] origin-top z-10 rounded-full"
             style={{ height: lineHeight }}
           />
           
           {experience.map((job, idx) => (
-            <JourneyCard key={idx} job={job} idx={idx} />
+            <JourneyCard key={idx} job={job} />
           ))}
         </div>
       </div>
@@ -54,46 +54,52 @@ export function Journey() {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function JourneyCard({ job, idx }: { job: any, idx: number }) {
+function JourneyCard({ job }: { job: any }) {
   const cardRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ["start end", "center center"]
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], [0.85, 1]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.95, 1]);
   const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
-  const rotateX = useTransform(scrollYProgress, [0, 1], [25, 0]);
-  const y = useTransform(scrollYProgress, [0, 1], [80, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [40, 0]);
 
   return (
-    <div ref={cardRef} className={`relative flex flex-col md:flex-row gap-8 mb-32 ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''} group perspective-[1200px]`}>
+    <div ref={cardRef} className="relative flex flex-col md:flex-row gap-8 mb-32 group">
       {/* Dot */}
       <motion.div 
         style={{ scale, opacity }}
-        className="absolute left-[10.5px] md:left-1/2 top-[10px] w-3.5 h-3.5 bg-void border-[2.5px] border-wave-cyan rounded-full md:-translate-x-1/2 z-20 shadow-[0_0_20px_rgba(0,240,255,0.5)] group-hover:bg-wave-cyan group-hover:scale-150 transition-all duration-500" 
+        className="absolute left-[10.5px] top-[10px] w-3.5 h-3.5 bg-void border-[2.5px] border-wave-cyan rounded-full z-20 shadow-[0_0_20px_rgba(0,240,255,0.5)] group-hover:bg-wave-cyan group-hover:scale-150 transition-all duration-500" 
       />
       
       <motion.div 
-        style={{ scale, opacity, rotateX, y }}
-        className={`md:w-1/2 pl-12 md:pl-0 ${idx % 2 === 0 ? 'md:pl-16' : 'md:pr-16'} flex flex-col justify-start`}
+        style={{ scale, opacity, y }}
+        className="w-full pl-12 md:pl-16 flex flex-col justify-start"
       >
-        <div className={`flex flex-col ${idx % 2 === 0 ? 'md:items-start text-left' : 'md:items-end text-left md:text-right'} bg-void/50 backdrop-blur-sm p-10 rounded-3xl border border-hairline hover:border-wave-cyan/40 transition-colors duration-500 shadow-2xl`}>
+        <div className="flex flex-col items-start text-left bg-void/50 backdrop-blur-sm p-10 rounded-3xl border border-hairline hover:border-wave-cyan/40 transition-colors duration-500 shadow-2xl">
           <span className="font-mono text-xs text-wave-cyan uppercase tracking-widest mb-4 inline-block px-3 py-1 rounded-full bg-wave-cyan/10 border border-wave-cyan/20">{job.period}</span>
           <h3 className="text-3xl font-medium text-ghost mb-2 tracking-tight">{job.role}</h3>
           <h4 className="text-lg text-static mb-8">{job.company}</h4>
           
-          <ul className={`flex flex-col gap-4 font-sans text-sm text-static/80 ${idx % 2 === 0 ? 'items-start text-left' : 'md:items-end text-left md:text-right'}`}>
-            {job.highlights.map((h: string, i: number) => (
-              <li key={i} className="leading-relaxed max-w-md relative">
-                {h}
-              </li>
+          <div className="flex flex-col gap-10 w-full">
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            {job.phases.map((phase: any, pIdx: number) => (
+              <div key={pIdx} className="flex flex-col gap-3">
+                <h5 className="font-medium text-ghost text-base border-b border-hairline pb-2">{phase.title}</h5>
+                <ul className="flex flex-col gap-3 font-sans text-sm text-static/80">
+                  {phase.bullets.map((b: string, i: number) => (
+                    <li key={i} className="leading-relaxed relative pl-4">
+                      <span className="absolute left-0 top-2 w-1.5 h-1.5 rounded-full bg-wave-cyan/50" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </motion.div>
-      
-      <div className="hidden md:block md:w-1/2" />
     </div>
   );
 }

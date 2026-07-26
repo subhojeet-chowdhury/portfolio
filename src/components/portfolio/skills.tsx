@@ -67,7 +67,7 @@ export function Skills() {
           <p className="font-mono text-static text-sm max-w-xl mx-auto">Mastery across the stack, powered by modern tooling.</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {skills.map((skillGroup, idx) => (
             <motion.div
               key={skillGroup.category}

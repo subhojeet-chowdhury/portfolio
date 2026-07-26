@@ -79,7 +79,7 @@ export function PortfolioHero() {
            initial={{ opacity: 0 }}
            animate={{ opacity: 1 }}
            transition={{ delay: 1, duration: 1 }}
-           className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce"
+           className="mt-12 animate-bounce"
         >
           <div className="w-6 h-10 border-2 border-hairline rounded-full flex justify-center pt-2">
             <div className="w-1.5 h-1.5 bg-wave-cyan rounded-full" />
