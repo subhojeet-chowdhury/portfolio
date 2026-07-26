@@ -1,5 +1,5 @@
 import portfolioData from "@/data/portfolio.json";
-import { Code2, Mail, ExternalLink } from "lucide-react";
+import { Code2, Mail } from "lucide-react";
 
 export function Footer() {
   const { name, socials, email } = portfolioData.personal;

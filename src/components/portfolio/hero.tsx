@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import { useState, useRef, Suspense } from "react";
-import * as THREE from "three";
 import portfolioData from "@/data/portfolio.json";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

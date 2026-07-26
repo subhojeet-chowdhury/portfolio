@@ -1,48 +1,31 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import portfolioData from "@/data/portfolio.json";
 import Link from "next/link";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useRef } from "react";
 
 export function Projects() {
   const { projects } = portfolioData;
 
   return (
-    <section className="bg-void py-32 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section className="bg-void py-32 px-6 border-t border-hairline">
+      <div className="max-w-5xl mx-auto relative">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 md:mb-24"
+          className="mb-24 text-center"
         >
           <h2 className="font-display text-4xl sm:text-5xl text-ghost mb-4">Selected Works</h2>
-          <p className="font-mono text-static text-sm max-w-xl">Deep dives into architecture and product engineering.</p>
+          <p className="font-mono text-static text-sm max-w-xl mx-auto">Deep dives into architecture and product engineering.</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="relative pb-32">
           {projects.map((project, idx) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.5 }}
-            >
-              {/* If it's SpeakType, we have a detailed case study page */}
-              {project.id === "speaktype" ? (
-                <Link href="/projects/speaktype" className="block h-full group">
-                  <ProjectCard project={project} />
-                </Link>
-              ) : (
-                <div className="h-full">
-                  <ProjectCard project={project} />
-                </div>
-              )}
-            </motion.div>
+            <StackedProjectCard key={project.id} project={project} index={idx} total={projects.length} />
           ))}
         </div>
       </div>
@@ -59,27 +42,61 @@ type ProjectData = {
   featured: boolean;
 };
 
-function ProjectCard({ project }: { project: ProjectData }) {
-  return (
-    <Card className="h-full bg-panel border-hairline hover:border-wave-cyan/50 transition-colors duration-500 overflow-hidden flex flex-col relative group">
-      <CardContent className="p-8 flex flex-col h-full relative z-10">
+function StackedProjectCard({ project, index, total }: { project: ProjectData, index: number, total: number }) {
+  const cardRef = useRef(null);
+  
+  // We track the scroll progress of the card hitting the top of the viewport
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start start", "start -100%"]
+  });
+
+  // Calculate top offset for sticky stacking effect
+  const topOffset = 120 + index * 40;
+  
+  // Scale down the card slightly as the user scrolls past it (creating the depth effect)
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1 - (total - index) * 0.05]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.4]);
+
+  const innerCardContent = (
+    <motion.div 
+      style={{ scale, opacity }}
+      className="bg-[#111315] border border-hairline hover:border-wave-cyan/50 transition-colors duration-500 rounded-3xl overflow-hidden flex flex-col md:flex-row h-full min-h-[400px] shadow-2xl relative group transform-gpu"
+    >
+      <div className="p-12 flex flex-col h-full relative z-10 w-full">
         <div className="flex justify-between items-start mb-6">
-          <h3 className="text-2xl font-medium text-ghost">{project.title}</h3>
-          <ArrowUpRight className="w-5 h-5 text-static group-hover:text-wave-cyan transition-colors duration-300" />
+          <h3 className="text-3xl font-medium text-ghost">{project.title}</h3>
+          <ArrowUpRight className="w-6 h-6 text-static group-hover:text-wave-cyan group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-300" />
         </div>
         
-        <p className="text-static text-sm leading-relaxed mb-8 flex-1">
+        <p className="text-static text-lg leading-relaxed mb-12 max-w-2xl">
           {project.tagline}
         </p>
         
-        <div className="flex flex-wrap gap-2 mt-auto">
+        <div className="flex flex-wrap gap-3 mt-auto">
           {project.tech.map((t: string) => (
-            <Badge key={t} variant="outline" className="font-mono text-[10px] uppercase tracking-wider border-hairline text-static bg-transparent">
+            <Badge key={t} variant="outline" className="font-mono text-xs uppercase tracking-widest border-white/10 text-ghost bg-white/5 py-2 px-4 rounded-xl">
               {t}
             </Badge>
           ))}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </motion.div>
+  );
+
+  return (
+    <div 
+      ref={cardRef} 
+      className="sticky w-full mb-12"
+      style={{ top: `${topOffset}px` }}
+    >
+      {project.id === "speaktype" ? (
+        <Link href="/projects/speaktype" className="block w-full h-full">
+          {innerCardContent}
+        </Link>
+      ) : (
+        innerCardContent
+      )}
+    </div>
   );
 }
