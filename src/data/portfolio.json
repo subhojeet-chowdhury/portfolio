@@ -115,6 +115,7 @@
       "id": "speaktype",
       "title": "SpeakType",
       "tagline": "A lightning-fast, privacy-first, cross-application dictation tool.",
+      "image": "/projects/speaktype.png",
       "tech": [
         "Rust",
         "Python",
