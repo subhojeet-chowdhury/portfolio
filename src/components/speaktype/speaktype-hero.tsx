@@ -111,7 +111,7 @@ export function SpeaktypeHero() {
         >
           <div className="flex gap-4">
             <Button asChild size="lg" className="rounded-full bg-ghost text-void hover:bg-white px-8 h-12 font-medium tracking-tight">
-              <a href="https://github.com/subhojeet-chowdhury/SpeakType/releases" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/subhojeet-chowdhury/SpeakType" target="_blank" rel="noopener noreferrer">
                 Download for Win/Mac
               </a>
             </Button>
@@ -121,7 +121,7 @@ export function SpeaktypeHero() {
               </a>
             </Button>
           </div>
-          
+
           <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-static">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-wave-cyan" />
             Privacy-first · Win, Mac, Linux · &lt;700ms
