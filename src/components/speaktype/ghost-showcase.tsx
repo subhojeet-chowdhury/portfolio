@@ -15,7 +15,7 @@ function StatusOverlay({ phase, rawText, className = "bottom-[110%] left-4" }: {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 10, scale: 0.95 }}
           transition={{ duration: 0.2 }}
-          className={`absolute ${className} mb-2 rounded-xl border border-white/20 bg-black/80 backdrop-blur-xl shadow-2xl px-4 py-2.5 flex items-center gap-4 z-50 text-white font-sans pointer-events-none min-w-[200px]`}
+          className={`absolute ${className} mb-2 rounded-xl border border-white/20 bg-black/80 backdrop-blur-xl shadow-2xl px-3 sm:px-4 py-2 sm:py-2.5 flex items-center gap-3 sm:gap-4 z-50 text-white font-sans pointer-events-none min-w-[160px] sm:min-w-[200px]`}
         >
           {phase === "listening" && (
             <div className="flex items-center gap-3 w-full">
@@ -29,7 +29,7 @@ function StatusOverlay({ phase, rawText, className = "bottom-[110%] left-4" }: {
                   />
                 ))}
               </div>
-              <div className="font-mono text-xs opacity-70 italic max-w-[280px] truncate">
+              <div className="font-mono text-[10px] sm:text-xs opacity-70 italic max-w-[200px] sm:max-w-[280px] truncate">
                 &quot;{rawText}&quot;
               </div>
             </div>
@@ -55,55 +55,55 @@ const environments = rawEnvs.map((env: any) => {
       <div className="flex flex-col h-full font-sans">
         <div className="flex-1 p-6 flex flex-col justify-end"></div>
         <div className="min-h-[5rem] border-t border-white/10 p-3 relative">
-           <StatusOverlay phase={phase} rawText={rawText} />
-           <div className="w-full h-full min-h-[3.5rem] border border-white/20 rounded-lg bg-[#222529] text-gray-200 text-sm px-4 py-3 shadow-inner">
-             {phase === "typing" || (phase === "idle" && text.length > 0) ? (
-                <span>
-                  {text}
-                  {phase === "typing" && <span className="inline-block w-1.5 h-4 bg-gray-400 ml-1 animate-pulse align-middle" />}
-                </span>
-              ) : (
-                <span className="text-gray-500">Message #general</span>
-              )}
-           </div>
+          <StatusOverlay phase={phase} rawText={rawText} />
+          <div className="w-full h-full min-h-[3rem] sm:min-h-[3.5rem] border border-white/20 rounded-lg bg-[#222529] text-gray-200 text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-3 shadow-inner">
+            {phase === "typing" || (phase === "idle" && text.length > 0) ? (
+              <span>
+                {text}
+                {phase === "typing" && <span className="inline-block w-1.5 h-4 bg-gray-400 ml-1 animate-pulse align-middle" />}
+              </span>
+            ) : (
+              <span className="text-gray-500">Message #general</span>
+            )}
+          </div>
         </div>
       </div>
     );
   } else if (env.name === "Claude") {
     renderUI = (text: string, phase: string, rawText: string) => (
-      <div className="flex flex-col h-full px-8 py-6 relative">
+      <div className="flex flex-col h-full px-4 sm:px-8 py-4 sm:py-6 relative">
         <div className="flex-1 flex flex-col justify-end gap-6 pb-20"></div>
-        <div className="absolute bottom-6 left-8 right-8">
-           <StatusOverlay phase={phase} rawText={rawText} />
-           <div className="w-full min-h-[4rem] border border-white/10 rounded-xl bg-[#3a3938] px-5 py-4 text-gray-200 text-sm font-sans relative shadow-inner">
-             {phase === "typing" || (phase === "idle" && text.length > 0) ? (
-                <span>
-                  {text}
-                  {phase === "typing" && <span className="inline-block w-1.5 h-4 bg-orange-400/50 ml-1 animate-pulse align-middle" />}
-                </span>
-              ) : (
-                <span className="text-gray-400">Reply to Claude...</span>
-              )}
-           </div>
+        <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-8 right-4 sm:right-8">
+          <StatusOverlay phase={phase} rawText={rawText} />
+          <div className="w-full min-h-[3rem] sm:min-h-[4rem] border border-white/10 rounded-xl bg-[#3a3938] px-4 sm:px-5 py-3 sm:py-4 text-gray-200 text-xs sm:text-sm font-sans relative shadow-inner">
+            {phase === "typing" || (phase === "idle" && text.length > 0) ? (
+              <span>
+                {text}
+                {phase === "typing" && <span className="inline-block w-1.5 h-4 bg-orange-400/50 ml-1 animate-pulse align-middle" />}
+              </span>
+            ) : (
+              <span className="text-gray-400">Reply to Claude...</span>
+            )}
+          </div>
         </div>
       </div>
     );
   } else if (env.name === "Mail") {
     renderUI = (text: string, phase: string, rawText: string) => (
       <div className="flex flex-col h-full font-sans relative">
-        <div className="border-b border-gray-200 px-6 py-3 flex flex-col gap-2 text-sm">
+        <div className="border-b border-gray-200 px-4 sm:px-6 py-2 sm:py-3 flex flex-col gap-1 sm:gap-2 text-xs sm:text-sm">
           <div className="flex text-gray-500"><span className="w-12">To:</span> <span className="text-gray-900">sarah@design.co</span></div>
           <div className="flex text-gray-500"><span className="w-12">Subj:</span> <span className="text-gray-900 font-medium">Re: Homepage Mockups</span></div>
         </div>
-        <div className="flex-1 p-6 text-gray-800 text-sm whitespace-pre-wrap leading-relaxed relative">
-          <StatusOverlay phase={phase} rawText={rawText} className="top-4 left-6" />
+        <div className="flex-1 p-4 sm:p-6 text-gray-800 text-xs sm:text-sm whitespace-pre-wrap leading-relaxed relative">
+          <StatusOverlay phase={phase} rawText={rawText} className="top-2 sm:top-4 left-4 sm:left-6" />
           {phase === "typing" || (phase === "idle" && text.length > 0) ? (
             <span>
               {text}
               {phase === "typing" && <span className="inline-block w-0.5 h-4 bg-blue-500 ml-1 animate-pulse align-middle" />}
             </span>
           ) : (
-             <span className="text-gray-300">Start typing...</span>
+            <span className="text-gray-300">Start typing...</span>
           )}
         </div>
       </div>
@@ -113,18 +113,18 @@ const environments = rawEnvs.map((env: any) => {
     renderUI = (text: string, phase: string, rawText: string) => (
       <div className="flex flex-col h-full relative" style={{ backgroundImage: 'radial-gradient(#00000015 1px, transparent 0)', backgroundSize: '15px 15px' }}>
         <div className="flex-1 p-6 flex flex-col justify-end"></div>
-        <div className="min-h-[4rem] bg-[#f0f0f0] flex items-center px-4 py-2 relative">
-           <StatusOverlay phase={phase} rawText={rawText} />
-           <div className="flex-1 min-h-[2.5rem] rounded-2xl bg-white border border-gray-200 text-gray-900 text-sm flex items-center px-4 py-2 shadow-sm">
-             {phase === "typing" || (phase === "idle" && text.length > 0) ? (
-                <span>
-                  {text}
-                  {phase === "typing" && <span className="inline-block w-0.5 h-4 bg-green-600 ml-1 animate-pulse align-middle" />}
-                </span>
-              ) : (
-                <span className="text-gray-400">Type a message</span>
-              )}
-           </div>
+        <div className="min-h-[3rem] sm:min-h-[4rem] bg-[#f0f0f0] flex items-center px-2 sm:px-4 py-2 relative">
+          <StatusOverlay phase={phase} rawText={rawText} />
+          <div className="flex-1 min-h-[2rem] sm:min-h-[2.5rem] rounded-xl sm:rounded-2xl bg-white border border-gray-200 text-gray-900 text-xs sm:text-sm flex items-center px-3 sm:px-4 py-1.5 sm:py-2 shadow-sm">
+            {phase === "typing" || (phase === "idle" && text.length > 0) ? (
+              <span>
+                {text}
+                {phase === "typing" && <span className="inline-block w-0.5 h-4 bg-green-600 ml-1 animate-pulse align-middle" />}
+              </span>
+            ) : (
+              <span className="text-gray-400">Type a message</span>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -175,15 +175,15 @@ export function GhostShowcase() {
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
-    
+
     // The Loop
     if (phase === "idle") {
       timeout = setTimeout(() => setPhase("listening"), 1000);
-    } 
+    }
     else if (phase === "listening") {
       // Skipped processing phase to reduce perceived latency
       timeout = setTimeout(() => setPhase("typing"), 2000);
-    } 
+    }
     else if (phase === "typing") {
       // Typewriter effect
       const text = environments[activeEnv].formattedText;
@@ -206,13 +206,13 @@ export function GhostShowcase() {
   const currentText = env.formattedText.slice(0, typedChars);
 
   return (
-    <section ref={containerRef} className="relative min-h-[120vh] bg-void pt-10 pb-32 overflow-hidden flex flex-col items-center">
-      
-      <div className="sticky top-[15vh] w-full max-w-5xl px-6 flex flex-col items-center">
-        
+    <section ref={containerRef} className="relative min-h-[120vh] bg-void py-20 md:py-24 overflow-hidden flex flex-col items-center">
+
+      <div className="sticky top-[15vh] md:top-[20vh] w-full max-w-5xl px-4 sm:px-6 flex flex-col items-center">
+
         {/* Title */}
         <div className="text-center mb-16 relative z-20">
-          <h2 className="font-display text-4xl sm:text-5xl tracking-tight text-ghost mb-4">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl tracking-tight text-ghost mb-4">
             &quot;The Ghost Typist&quot;
           </h2>
           <p className="font-mono text-static text-sm max-w-xl mx-auto">
@@ -253,3 +253,11 @@ export function GhostShowcase() {
     </section>
   );
 }
+
+
+
+"fix: resolved mobile responsiveness and unify section spacing across SpeakType page
+
+  - speaktype - hero: scaled down headline text on mobile and implemented vertical stacking for CTA buttons to prevent overflow.
+- ghost - showcase: added responsive typography and dynamic padding to the 3D stage and StatusOverlay to prevent text clipping on small screens.
+- architecture & ghost - showcase: normalized vertical section padding(changed from heavy py - 32 / pb - 32 gaps to consistent py - 20 / md: py - 24) for a seamless scrolling flow."

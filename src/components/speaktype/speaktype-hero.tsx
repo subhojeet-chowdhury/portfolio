@@ -58,7 +58,7 @@ export function SpeaktypeHero() {
           </span>
         </motion.p>
 
-        <h1 className="font-display text-6xl font-medium leading-[0.95] tracking-tight text-ghost sm:text-7xl md:text-8xl">
+        <h1 className="font-display text-5xl font-medium leading-[0.95] tracking-tight text-ghost sm:text-7xl md:text-8xl">
           {headlineWords.map((word, i) => (
             <motion.span
               key={word}
@@ -109,22 +109,28 @@ export function SpeaktypeHero() {
           transition={{ duration: 0.5 }}
           className="mt-14 flex flex-col items-center gap-6"
         >
-          <div className="flex gap-4">
-            <Button asChild size="lg" className="rounded-full bg-ghost text-void hover:bg-white px-8 h-12 font-medium tracking-tight">
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4 sm:px-0">
+            <Button asChild size="lg" className="w-full sm:w-auto rounded-full bg-ghost text-void hover:bg-white px-8 h-12 font-medium tracking-tight">
               <a href="https://github.com/subhojeet-chowdhury/SpeakType" target="_blank" rel="noopener noreferrer">
                 Download for Win/Mac
               </a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full border-hairline bg-transparent hover:bg-hairline hover:text-ghost px-8 h-12 font-medium tracking-tight text-ghost">
+            <Button asChild size="lg" variant="outline" className="w-full sm:w-auto rounded-full border-hairline bg-transparent hover:bg-hairline hover:text-ghost px-8 h-12 font-medium tracking-tight text-ghost">
               <a href="https://github.com/subhojeet-chowdhury/SpeakType" target="_blank" rel="noopener noreferrer">
                 View on GitHub
               </a>
             </Button>
           </div>
 
-          <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-static">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-wave-cyan" />
-            Privacy-first · Win, Mac, Linux · &lt;700ms
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 font-mono text-[10px] sm:text-xs uppercase tracking-[0.1em] sm:tracking-[0.2em] text-static text-center">
+            <div className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-wave-cyan" />
+              <span>Privacy-first</span>
+            </div>
+            <span className="hidden sm:inline">·</span>
+            <span>Win, Mac, Linux</span>
+            <span className="hidden sm:inline">·</span>
+            <span>&lt;700ms</span>
           </div>
         </motion.div>
       </div>

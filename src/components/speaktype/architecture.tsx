@@ -115,19 +115,19 @@ export function Architecture() {
   const cards = project?.showcaseData?.architectureCards || [];
 
   return (
-    <section ref={containerRef} className="bg-panel py-32 px-6 overflow-hidden relative">
+    <section ref={containerRef} className="bg-panel py-20 md:py-24 px-4 sm:px-6 overflow-hidden relative">
       {/* Background ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-wave-cyan/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-5xl mx-auto relative z-10">
-        <div className="text-center mb-24">
+        <div className="text-center mb-16 md:mb-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-display text-4xl sm:text-5xl tracking-tight text-ghost mb-6">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl tracking-tight text-ghost mb-4 md:mb-6">
               Dictation that finally feels like magic.
             </h2>
             <p className="font-mono text-static max-w-2xl mx-auto">
