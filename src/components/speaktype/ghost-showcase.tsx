@@ -253,11 +253,3 @@ export function GhostShowcase() {
     </section>
   );
 }
-
-
-
-"fix: resolved mobile responsiveness and unify section spacing across SpeakType page
-
-  - speaktype - hero: scaled down headline text on mobile and implemented vertical stacking for CTA buttons to prevent overflow.
-- ghost - showcase: added responsive typography and dynamic padding to the 3D stage and StatusOverlay to prevent text clipping on small screens.
-- architecture & ghost - showcase: normalized vertical section padding(changed from heavy py - 32 / pb - 32 gaps to consistent py - 20 / md: py - 24) for a seamless scrolling flow."
