@@ -114,7 +114,7 @@
     {
       "id": "speaktype",
       "title": "SpeakType",
-      "tagline": "A lightning-fast, privacy-first, cross-application dictation tool.",
+      "tagline": "A lightning-fast, privacy-first, cross-application speech-to-text tool: OS-level global hotkeys and local Whisper inference run fully on-device, with a cleanup agent applying context-aware tone and formatting before native keystroke injection — zero cloud dependency.",
       "image": "/projects/speaktype.png",
       "tech": [
         "Rust",
@@ -211,7 +211,7 @@
     {
       "id": "viva",
       "title": "Viva.ai",
-      "tagline": "An AI oral examination platform evaluating both answer content and vocal delivery.",
+      "tagline": "Full-stack agentic platform that generates structured interview papers from any topic, conducts voice-driven Q&A, and evaluates spoken answers against LLM-generated rubrics; config-driven multi-provider LLM abstraction with real-time delivery analytics (pace, filler words).",
       "image": "/projects/viva.png",
       "tech": [
         "Next.js",

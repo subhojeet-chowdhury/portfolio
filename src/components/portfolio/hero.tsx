@@ -10,7 +10,7 @@ import portfolioData from "@/data/portfolio.json";
 function Starfield(props: any) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const ref = useRef<any>(null);
-  
+
   // Generate random points in a sphere natively to avoid extra dependencies
   const [positions] = useState(() => {
     const p = new Float32Array(3000 * 3);
@@ -70,16 +70,34 @@ export function PortfolioHero() {
           <h1 className="font-display text-5xl sm:text-7xl md:text-8xl font-medium tracking-tight text-ghost mb-6">
             {name}
           </h1>
-          <p className="font-mono text-static text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="font-mono text-static text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-10">
             {summary}
           </p>
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+            <a
+              href="/docs/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-12 items-center justify-center rounded-full bg-ghost px-8 font-medium tracking-tight text-void hover:bg-white transition-colors"
+            >
+              Download Resume
+            </a>
+            <a
+              href={portfolioData.personal.socials.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-wave-cyan bg-void/50 backdrop-blur-md px-8 font-medium tracking-tight text-wave-cyan hover:bg-wave-cyan/10 transition-all"
+            >
+              View GitHub
+            </a>
+          </div>
         </motion.div>
-        
+
         <motion.div
-           initial={{ opacity: 0 }}
-           animate={{ opacity: 1 }}
-           transition={{ delay: 1, duration: 1 }}
-           className="mt-12 animate-bounce"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="mt-12 animate-bounce"
         >
           <div className="w-6 h-10 border-2 border-hairline rounded-full flex justify-center pt-2">
             <div className="w-1.5 h-1.5 bg-wave-cyan rounded-full" />

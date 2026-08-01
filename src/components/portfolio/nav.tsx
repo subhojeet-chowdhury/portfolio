@@ -29,9 +29,9 @@ export function Navbar() {
     >
       <div className="pointer-events-auto flex items-center gap-6 sm:gap-8 px-6 py-3 rounded-full border border-hairline bg-[#111315]/80 backdrop-blur-md shadow-2xl font-mono text-[10px] sm:text-xs uppercase tracking-widest text-ghost">
         <a href="#hero" className="hover:text-wave-cyan transition-colors">Home</a>
+        <a href="#projects" className="hover:text-wave-cyan transition-colors">Featured</a>
         <a href="#skills" className="hover:text-wave-cyan transition-colors">Skills</a>
         <a href="#experience" className="hover:text-wave-cyan transition-colors">Journey</a>
-        <a href="#projects" className="hover:text-wave-cyan transition-colors">Projects</a>
       </div>
     </motion.nav>
   );

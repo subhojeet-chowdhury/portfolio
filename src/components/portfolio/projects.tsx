@@ -26,7 +26,7 @@ function Fallback3D() {
 }
 
 export function Projects() {
-  const { projects } = portfolioData;
+  const featuredProjects = portfolioData.projects.slice(0, 2);
 
   return (
     <section id="projects" className="bg-void py-32 px-6 border-t border-hairline">
@@ -37,13 +37,13 @@ export function Projects() {
           viewport={{ once: true }}
           className="mb-24 text-center"
         >
-          <h2 className="font-display text-4xl sm:text-5xl text-ghost mb-4">Selected Works</h2>
+          <h2 className="font-display text-4xl sm:text-5xl text-ghost mb-4">Featured Engineering</h2>
           <p className="font-mono text-static text-sm max-w-xl mx-auto">Deep dives into architecture and product engineering.</p>
         </motion.div>
 
         <div className="relative pb-32">
-          {projects.map((project, idx) => (
-            <StackedProjectCard key={project.id} project={project} index={idx} total={projects.length} />
+          {featuredProjects.map((project, idx) => (
+            <StackedProjectCard key={project.id} project={project} index={idx} total={featuredProjects.length} />
           ))}
         </div>
       </div>
