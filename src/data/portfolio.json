@@ -209,6 +209,21 @@
       }
     },
     {
+      "id": "viva",
+      "title": "Viva.ai",
+      "tagline": "An AI oral examination platform evaluating both answer content and vocal delivery.",
+      "image": "/projects/viva.png",
+      "tech": [
+        "Next.js",
+        "FastAPI",
+        "Gemini",
+        "Groq Whisper STT",
+        "Groq Orpheus TTS"
+      ],
+      "github": "",
+      "featured": true
+    },
+    {
       "id": "hr-workmate",
       "title": "HR Workmate",
       "tagline": "Agentic HR Chatbot for enterprise conversational querying and retrieval.",
