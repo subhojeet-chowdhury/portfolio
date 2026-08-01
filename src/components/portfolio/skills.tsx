@@ -55,7 +55,7 @@ export function Skills() {
   const { skills } = portfolioData;
   
   return (
-    <section className="bg-void py-32 px-6 border-t border-hairline">
+    <section id="skills" className="bg-void py-32 px-6 border-t border-hairline">
       <div className="max-w-6xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}

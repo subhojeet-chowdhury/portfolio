@@ -45,7 +45,7 @@ export function PortfolioHero() {
   const { name, summary } = portfolioData.personal;
 
   return (
-    <section className="relative w-full h-screen bg-void overflow-hidden flex items-center justify-center">
+    <section id="hero" className="relative w-full h-screen bg-void overflow-hidden flex items-center justify-center">
       {/* 3D Background */}
       <div className="absolute inset-0 z-0 opacity-60">
         <Canvas camera={{ position: [0, 0, 1] }}>

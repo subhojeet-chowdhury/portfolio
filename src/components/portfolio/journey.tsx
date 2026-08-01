@@ -22,7 +22,7 @@ export function Journey() {
   const lineHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section className="bg-panel py-32 px-6 overflow-hidden border-t border-hairline" ref={containerRef}>
+    <section id="experience" className="bg-panel py-32 px-6 overflow-hidden border-t border-hairline" ref={containerRef}>
       <div className="max-w-5xl mx-auto relative">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}

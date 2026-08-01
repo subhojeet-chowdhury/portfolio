@@ -29,7 +29,7 @@ export function Projects() {
   const { projects } = portfolioData;
 
   return (
-    <section className="bg-void py-32 px-6 border-t border-hairline">
+    <section id="projects" className="bg-void py-32 px-6 border-t border-hairline">
       <div className="max-w-6xl mx-auto relative">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -117,7 +117,7 @@ function InteractiveMedia({ image, title }: { image?: string; title: string }) {
             src={image} 
             alt={title} 
             fill 
-            className="object-cover object-center rounded-2xl opacity-90"
+            className="object-contain object-center rounded-2xl opacity-100 p-2 md:p-6"
           />
         ) : (
           <Fallback3D />
